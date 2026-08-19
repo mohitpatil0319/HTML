@@ -1,17 +1,1366 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wizard King</title>
-</head>
-<body>
-    <header>
-        <h1>Wizard King</h1>
-    </header>
-    
-    <hr/>
 
-    <img src="https://i.pinimg.com/736x/df/90/9a/df909aa3f234feb99af335bdc05ae83d.jpg" alt="Wizard king" height="400"/>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Black Clover | Wizard King</title>
+
+    <style>
+
+        /* ========================================
+           GLOBAL
+        ======================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080812;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* ========================================
+           HEADER
+        ======================================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            padding: 20px 6%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(8, 8, 18, 0.88);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .logo {
+            font-size: 25px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            color: #c4b5fd;
+        }
+
+        nav {
+            display: flex;
+
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ffffff;
+
+            font-size: 15px;
+
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #a78bfa;
+        }
+
+
+        /* ========================================
+           HERO
+        ======================================== */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: grid;
+
+            grid-template-columns: 50% 50%;
+
+            padding: 90px 5% 30px;
+
+            background:
+
+                radial-gradient(
+                    circle at 20% 50%,
+                    rgba(124, 58, 237, 0.18),
+                    transparent 40%
+                ),
+
+                #080812;
+
+            overflow: hidden;
+        }
+
+
+        /* ========================================
+           HERO CONTENT
+        ======================================== */
+
+        .hero-content {
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding: 40px 8%;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .small-title {
+
+            color: #a78bfa;
+
+            font-size: 15px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+
+            font-size: clamp(50px, 6vw, 85px);
+
+            line-height: 0.95;
+
+            color: #ffffff;
+
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 0 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .hero h2 {
+
+            font-size: 30px;
+
+            color: #c4b5fd;
+
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+
+            max-width: 550px;
+
+            color: #c7c7d1;
+
+            font-size: 18px;
+
+            line-height: 1.8;
+        }
+
+
+        /* ========================================
+           BUTTONS
+        ======================================== */
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+        .btn {
+
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            border-radius: 8px;
+
+            background: #7c3aed;
+
+            color: #ffffff;
+
+            font-weight: bold;
+
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+
+            background: #a78bfa;
+
+            color: #080812;
+
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+
+            background: transparent;
+
+            border: 1px solid #a78bfa;
+        }
+
+        .btn-outline:hover {
+
+            background: #a78bfa;
+        }
+
+
+        /* ========================================
+           HERO IMAGE
+        ======================================== */
+
+        .hero-image {
+
+            position: relative;
+
+            height: calc(100vh - 120px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+
+        /* Purple Glow */
+
+        .hero-image::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+
+            height: 500px;
+
+            background: #6d28d9;
+
+            filter: blur(160px);
+
+            opacity: 0.18;
+
+            z-index: 0;
+        }
+
+
+        /* Image */
+
+        .hero-image img {
+
+            position: relative;
+
+            z-index: 1;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            object-position: center;
+
+            filter:
+                drop-shadow(
+                    0 0 35px
+                    rgba(124, 58, 237, 0.45)
+                );
+
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image img:hover {
+
+            transform: scale(1.03);
+        }
+
+
+        /* ========================================
+           GENERAL SECTION
+        ======================================== */
+
+        section {
+
+            padding: 90px 8%;
+        }
+
+        .section-title {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 50px;
+
+            color: #c4b5fd;
+
+            text-shadow:
+                0 0 15px
+                rgba(139, 92, 246, 0.3);
+        }
+
+
+        /* ========================================
+           ABOUT
+        ======================================== */
+
+        .about {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            text-align: center;
+
+            color: #c7c7d1;
+
+            font-size: 18px;
+        }
+
+        .about p {
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ========================================
+           CHARACTER INFORMATION
+        ======================================== */
+
+        .info-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+
+            max-width: 1100px;
+
+            margin: auto;
+        }
+
+        .info-card {
+
+            background:
+                rgba(21, 21, 37, 0.85);
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            border: 1px solid #292944;
+
+            transition: 0.3s ease;
+        }
+
+        .info-card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: #8b5cf6;
+
+            box-shadow:
+                0 10px 30px
+                rgba(124, 58, 237, 0.15);
+        }
+
+        .info-card h3 {
+
+            color: #a78bfa;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+        .info-list {
+
+            list-style: none;
+        }
+
+        .info-list li {
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid #292944;
+
+            color: #d4d4dc;
+        }
+
+        .info-list li:last-child {
+
+            border-bottom: none;
+        }
+
+        .info-list strong {
+
+            color: #ffffff;
+        }
+
+
+        /* ========================================
+           ABILITIES
+        ======================================== */
+
+        .abilities {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .ability-card {
+
+            background: #151525;
+
+            padding: 35px 25px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            border: 1px solid #292944;
+
+            transition: 0.3s ease;
+        }
+
+        .ability-card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: #8b5cf6;
+
+            box-shadow:
+                0 15px 35px
+                rgba(124, 58, 237, 0.15);
+        }
+
+        .ability-icon {
+
+            font-size: 45px;
+
+            margin-bottom: 15px;
+        }
+
+        .ability-card h3 {
+
+            color: #c4b5fd;
+
+            font-size: 22px;
+
+            margin-bottom: 12px;
+        }
+
+        .ability-card p {
+
+            color: #bdbdc8;
+        }
+
+
+        /* ========================================
+           POWER SECTION
+        ======================================== */
+
+        .power-section {
+
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+        .power {
+
+            margin-bottom: 25px;
+        }
+
+        .power-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+        }
+
+        .power-header span:first-child {
+
+            color: #ffffff;
+
+            font-weight: bold;
+        }
+
+        .power-header span:last-child {
+
+            color: #a78bfa;
+        }
+
+        .power-bar {
+
+            height: 10px;
+
+            background: #222235;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .power-fill {
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6d28d9,
+                    #a78bfa
+                );
+
+            border-radius: 20px;
+        }
+
+        .time-magic {
+            width: 98%;
+        }
+
+        .mana {
+            width: 95%;
+        }
+
+        .intelligence {
+            width: 99%;
+        }
+
+        .leadership {
+            width: 96%;
+        }
+
+
+        /* ========================================
+           QUOTE
+        ======================================== */
+
+        .quote-section {
+
+            background: #0d0d18;
+        }
+
+        .quote {
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 40px;
+
+            background: #151525;
+
+            border-left:
+                5px solid #8b5cf6;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-size: 23px;
+
+            color: #e5e5ed;
+
+            box-shadow:
+                0 10px 40px
+                rgba(0, 0, 0, 0.3);
+        }
+
+        .quote-author {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color: #a78bfa;
+
+            font-size: 16px;
+
+            font-style: normal;
+        }
+
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+
+        footer {
+
+            padding: 35px 8%;
+
+            text-align: center;
+
+            background: #050509;
+
+            border-top:
+                1px solid #292944;
+
+            color: #888895;
+        }
+
+        footer span {
+
+            color: #a78bfa;
+        }
+
+
+        /* ========================================
+           TABLET
+        ======================================== */
+
+        @media (max-width: 900px) {
+
+            .hero {
+
+                grid-template-columns: 1fr;
+
+                min-height: aut;
+
+                padding-top: 110px;
+            }
+
+            .hero-content {
+
+                text-align: center;
+
+                align-items: center;
+
+                padding: 50px 5%;
+            }
+
+            .hero p {
+
+                margin: auto;
+            }
+
+            .hero-buttons {
+
+                justify-content: center;
+
+                flex-wrap: wrap;
+            }
+
+            .hero-image {
+
+                height: 600px;
+
+                order: 2;
+            }
+
+            .hero-image img {
+
+                object-fit: contain;
+            }
+
+            .abilities {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        /* ========================================
+           MOBILE
+        ======================================== */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                padding: 18px 5%;
+            }
+
+            .logo {
+
+                font-size: 20px;
+            }
+
+            nav {
+
+                display: none;
+            }
+
+            section {
+
+                padding: 70px 5%;
+            }
+
+            .hero {
+
+                padding:
+                    100px 5% 30px;
+            }
+
+            .hero h1 {
+
+                font-size: 48px;
+            }
+
+            .hero h2 {
+
+                font-size: 24px;
+            }
+
+            .hero p {
+
+                font-size: 16px;
+            }
+
+            .hero-image {
+
+                height: 450px;
+            }
+
+            .info-container {
+
+                grid-template-columns: 1fr;
+            }
+
+            .abilities {
+
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+
+                font-size: 32px;
+            }
+
+            .quote {
+
+                padding: 30px 20px;
+
+                font-size: 19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         HEADER
+    ======================================== -->
+
+    <header>
+
+        <div class="logo">
+            BLACK CLOVER
+        </div>
+
+        <nav>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#info">
+                Info
+            </a>
+
+            <a href="#abilities">
+                Abilities
+            </a>
+
+            <a href="#power">
+                Power
+            </a>
+
+            <a href="#quote">
+                Quote
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ========================================
+         HERO SECTION
+    ======================================== -->
+
+    <section class="hero">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                28th Wizard King
+            </div>
+
+            <h1>
+                Julius
+                <br>
+                Novachrono
+            </h1>
+
+            <h2>
+                The Wizard King
+            </h2>
+
+            <p>
+                The legendary 28th Wizard King of the
+                Clover Kingdom, known for his extraordinary
+                Time Magic, incredible intelligence and
+                endless curiosity about magic.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#info" class="btn">
+                    Explore Character
+                </a>
+
+                <a href="#abilities"
+                   class="btn btn-outline">
+
+                    View Abilities
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE IMAGE -->
+
+        <div class="hero-image">
+
+            <img
+                src="https://i.pinimg.com/736x/df/90/9a/df909aa3f234feb99af335bdc05ae83d.jpg"
+                alt="Julius Novachrono Wizard King"
+            >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         ABOUT
+    ======================================== -->
+
+    <section id="about">
+
+        <h2 class="section-title">
+            About Julius
+        </h2>
+
+        <div class="about">
+
+            <p>
+                Julius Novachrono is the 28th Wizard King
+                of the Clover Kingdom in Black Clover.
+                He is one of the most powerful and respected
+                magic users in the kingdom.
+            </p>
+
+            <p>
+                Julius has an incredible fascination with
+                different types of magic. He often disguises
+                himself so that he can explore the kingdom
+                and observe unique magical abilities.
+            </p>
+
+            <p>
+                Despite being the Wizard King, Julius is
+                friendly, curious and carefree. He believes
+                that people should not be judged by their
+                social status or magical abilities.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         CHARACTER INFORMATION
+    ======================================== -->
+
+    <section id="info">
+
+        <h2 class="section-title">
+            Character Information
+        </h2>
+
+        <div class="info-container">
+
+
+            <!-- BASIC INFORMATION -->
+
+            <div class="info-card">
+
+                <h3>
+                    👑 Basic Information
+                </h3>
+
+                <ul class="info-list">
+
+                    <li>
+                        <strong>Name:</strong>
+                        Julius Novachrono
+                    </li>
+
+                    <li>
+                        <strong>Anime:</strong>
+                        Black Clover
+                    </li>
+
+                    <li>
+                        <strong>Title:</strong>
+                        Wizard King
+                    </li>
+
+                    <li>
+                        <strong>Position:</strong>
+                        28th Wizard King
+                    </li>
+
+                    <li>
+                        <strong>Kingdom:</strong>
+                        Clover Kingdom
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- MAGIC INFORMATION -->
+
+            <div class="info-card">
+
+                <h3>
+                    ✨ Magic Information
+                </h3>
+
+                <ul class="info-list">
+
+                    <li>
+                        <strong>Magic Attribute:</strong>
+                        Time Magic
+                    </li>
+
+                    <li>
+                        <strong>Grimoire:</strong>
+                        1-leaf Clover Grimoire
+                    </li>
+
+                    <li>
+                        <strong>Former Squad:</strong>
+                        Grey Deer
+                    </li>
+
+                    <li>
+                        <strong>Specialty:</strong>
+                        Time Manipulation
+                    </li>
+
+                    <li>
+                        <strong>Role:</strong>
+                        Wizard King
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         ABILITIES
+    ======================================== -->
+
+    <section id="abilities">
+
+        <h2 class="section-title">
+            Powers & Abilities
+        </h2>
+
+        <div class="abilities">
+
+
+            <!-- TIME MAGIC -->
+
+            <div class="ability-card">
+
+                <div class="ability-icon">
+                    ⏳
+                </div>
+
+                <h3>
+                    Time Magic
+                </h3>
+
+                <p>
+                    Julius can manipulate time, allowing
+                    him to accelerate, slow down, stop
+                    and store time.
+                </p>
+
+            </div>
+
+
+
+            <!-- TIME STEAL -->
+
+            <div class="ability-card">
+
+                <div class="ability-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Time Steal
+                </h3>
+
+                <p>
+                    Julius can steal time from his opponents
+                    and use the stored time to power his
+                    abilities.
+                </p>
+
+            </div>
+
+
+
+            <!-- TIME STORAGE -->
+
+            <div class="ability-card">
+
+                <div class="ability-icon">
+                    🔮
+                </div>
+
+                <h3>
+                    Time Storage
+                </h3>
+
+                <p>
+                    He can store time inside his grimoire
+                    and use it later when necessary.
+                </p>
+
+            </div>
+
+
+
+            <!-- MANA ZONE -->
+
+            <div class="ability-card">
+
+                <div class="ability-icon">
+                    🌌
+                </div>
+
+                <h3>
+                    Mana Zone
+                </h3>
+
+                <p>
+                    Julius can control mana over a large
+                    area, giving him exceptional battlefield
+                    awareness.
+                </p>
+
+            </div>
+
+
+
+            <!-- CHRONO ANASTASIS -->
+
+            <div class="ability-card">
+
+                <div class="ability-icon">
+                    🌀
+                </div>
+
+                <h3>
+                    Chrono Anastasis
+                </h3>
+
+                <p>
+                    A powerful Time Magic spell that allows
+                    Julius to manipulate the flow of time
+                    across a wide area.
+                </p>
+
+            </div>
+
+
+
+            <!-- TRANSFORMATION -->
+
+            <div class="ability-card">
+
+                <div class="ability-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Transformation Magic
+                </h3>
+
+                <p>
+                    Julius can alter his appearance using
+                    Transformation Magic.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         POWER
+    ======================================== -->
+
+    <section id="power">
+
+        <h2 class="section-title">
+            Power & Skills
+        </h2>
+
+        <div class="power-section">
+
+
+            <div class="power">
+
+                <div class="power-header">
+
+                    <span>
+                        Time Magic
+                    </span>
+
+                    <span>
+                        98%
+                    </span>
+
+                </div>
+
+                <div class="power-bar">
+
+                    <div
+                        class="power-fill time-magic">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="power">
+
+                <div class="power-header">
+
+                    <span>
+                        Mana Control
+                    </span>
+
+                    <span>
+                        95%
+                    </span>
+
+                </div>
+
+                <div class="power-bar">
+
+                    <div
+                        class="power-fill mana">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="power">
+
+                <div class="power-header">
+
+                    <span>
+                        Intelligence
+                    </span>
+
+                    <span>
+                        99%
+                    </span>
+
+                </div>
+
+                <div class="power-bar">
+
+                    <div
+                        class="power-fill intelligence">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="power">
+
+                <div class="power-header">
+
+                    <span>
+                        Leadership
+                    </span>
+
+                    <span>
+                        96%
+                    </span>
+
+                </div>
+
+                <div class="power-bar">
+
+                    <div
+                        class="power-fill leadership">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         QUOTE
+    ======================================== -->
+
+    <section
+        class="quote-section"
+        id="quote">
+
+        <h2 class="section-title">
+            The Wizard King's Philosophy
+        </h2>
+
+        <div class="quote">
+
+            "People are not defined by their birth
+            or status. What matters is what they
+            choose to do with their abilities."
+
+            <span class="quote-author">
+                — Julius Novachrono
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+
+    <footer>
+
+        <p>
+            Black Clover Anime Fan Page
+        </p>
+
+        <p>
+            <span>
+                Julius Novachrono
+            </span>
+
+            — The Wizard King
+        </p>
+
+        <br>
+
+        <p>
+            Made for Anime Fans ⚡
+        </p>
+
+    </footer>
+
+
 </body>
+
 </html>
