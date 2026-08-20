@@ -1,23 +1,1756 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Knights</title>
+
+    <title>Black Clover | Magic Knights</title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    #172b48 0%,
+                    #0a1220 35%,
+                    #03060b 75%
+                );
+
+            color: white;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           ANIMATED BACKGROUND
+        ===================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                radial-gradient(
+                    circle,
+                    rgba(255, 215, 100, 0.7) 1px,
+                    transparent 1px
+                );
+
+            background-size: 120px 120px;
+
+            opacity: 0.12;
+
+            animation: starsMove 25s linear infinite;
+
+            z-index: -2;
+        }
+
+
+        @keyframes starsMove {
+
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 120px 120px;
+            }
+        }
+
+
+        /* =====================================================
+           GLOWING LIGHT
+        ===================================================== */
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+
+            height: 500px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(90, 140, 255, 0.08),
+                    transparent 70%
+                );
+
+            top: 20%;
+
+            left: -200px;
+
+            pointer-events: none;
+
+            animation: lightMove 10s ease-in-out infinite alternate;
+
+            z-index: -1;
+        }
+
+
+        @keyframes lightMove {
+
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(250px);
+            }
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 7%;
+
+            background:
+                rgba(3, 7, 13, 0.85);
+
+            backdrop-filter: blur(15px);
+
+            border-bottom:
+                1px solid rgba(255, 215, 100, 0.25);
+        }
+
+
+        .logo {
+
+            color: #ffd76a;
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            text-shadow:
+                0 0 15px rgba(255, 215, 100, 0.4);
+        }
+
+
+        nav {
+
+            display: flex;
+
+            gap: 25px;
+        }
+
+
+        nav a {
+
+            color: #d8dee8;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+
+        nav a:hover {
+
+            color: #ffd76a;
+
+            text-shadow:
+                0 0 15px #ffd76a;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            min-height: 100vh;
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 120px 7% 80px;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           MAGIC CIRCLE
+        ===================================================== */
+
+        .magic-circle {
+
+            position: absolute;
+
+            width: 480px;
+
+            height: 480px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(255, 215, 100, 0.4);
+
+            animation:
+                rotateCircle 20s linear infinite;
+
+            box-shadow:
+                0 0 40px
+                rgba(255, 215, 100, 0.08);
+        }
+
+
+        .magic-circle::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 35px;
+
+            border-radius: 50%;
+
+            border:
+                1px dashed
+                rgba(100, 180, 255, 0.4);
+        }
+
+
+        .magic-circle::after {
+
+            content: "✦";
+
+            position: absolute;
+
+            top: -17px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            color: #ffd76a;
+
+            font-size: 28px;
+
+            text-shadow:
+                0 0 20px #ffd76a;
+        }
+
+
+        @keyframes rotateCircle {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =====================================================
+           HERO CONTENT
+        ===================================================== */
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 900px;
+
+            animation:
+                heroAppear 1.5s ease;
+        }
+
+
+        @keyframes heroAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(50px)
+                    scale(0.9);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        .hero-icon {
+
+            font-size: 65px;
+
+            margin-bottom: 20px;
+
+            animation:
+                floating 3s ease-in-out infinite;
+
+            filter:
+                drop-shadow(
+                    0 0 15px
+                    rgba(255,215,100,0.6)
+                );
+        }
+
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                clamp(50px, 8vw, 95px);
+
+            letter-spacing: 8px;
+
+            color: #fff0b8;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                0 0 20px
+                rgba(255,215,100,0.35);
+
+            margin-bottom: 20px;
+        }
+
+
+        .hero h2 {
+
+            color: #9fb8d5;
+
+            font-size: 24px;
+
+            font-weight: normal;
+
+            margin-bottom: 25px;
+        }
+
+
+        .hero p {
+
+            max-width: 720px;
+
+            margin: auto;
+
+            color: #9aa7b7;
+
+            line-height: 1.9;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           HERO BUTTON
+        ===================================================== */
+
+        .hero-button {
+
+            display: inline-block;
+
+            margin-top: 35px;
+
+            padding: 14px 28px;
+
+            border:
+                1px solid #ffd76a;
+
+            color: #ffd76a;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.4s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .hero-button::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: -100%;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: #ffd76a;
+
+            transition: 0.4s;
+
+            z-index: -1;
+        }
+
+
+        .hero-button:hover {
+
+            color: #07101b;
+
+            box-shadow:
+                0 0 30px
+                rgba(255,215,100,0.4);
+        }
+
+
+        .hero-button:hover::before {
+
+            left: 0;
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding-bottom: 100px;
+        }
+
+
+        /* =====================================================
+           SECTION TITLE
+        ===================================================== */
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: 42px;
+
+            color: #fff0b8;
+
+            margin-bottom: 10px;
+        }
+
+
+        .section-title p {
+
+            color: #8290a1;
+        }
+
+
+        /* =====================================================
+           MAIN MAGIC KNIGHTS CARD
+        ===================================================== */
+
+        .main-card {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1.2fr;
+
+            gap: 50px;
+
+            align-items: center;
+
+            margin-bottom: 120px;
+
+            padding: 35px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(20,35,53,0.9),
+                    rgba(6,12,20,0.95)
+                );
+
+            border:
+                1px solid
+                rgba(255,215,100,0.25);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,0.45);
+        }
+
+
+        /* =====================================================
+           MAIN IMAGE
+        ===================================================== */
+
+        .main-image {
+
+            position: relative;
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(255,215,100,0.4);
+
+            cursor: pointer;
+        }
+
+
+        .main-image img {
+
+            width: 100%;
+
+            height: 430px;
+
+            object-fit: contain;
+
+            display: block;
+
+            background: #07101a;
+
+            transition:
+                transform 0.7s ease;
+        }
+
+
+        .main-image:hover img {
+
+            transform: scale(1.06);
+        }
+
+
+        .image-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,0.85)
+                );
+
+            opacity: 0;
+
+            transition: 0.4s;
+        }
+
+
+        .main-image:hover .image-overlay {
+
+            opacity: 1;
+        }
+
+
+        .image-overlay span {
+
+            color: #ffd76a;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =====================================================
+           MAIN INFO
+        ===================================================== */
+
+        .main-info h2 {
+
+            color: #ffd76a;
+
+            font-size: 40px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .main-info p {
+
+            color: #b4bdc8;
+
+            line-height: 1.9;
+
+            margin-bottom: 18px;
+        }
+
+
+        .info-box {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+
+        .info-item {
+
+            padding: 15px;
+
+            background:
+                rgba(255,255,255,0.03);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+        }
+
+
+        .info-item strong {
+
+            display: block;
+
+            color: #ffd76a;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+
+            text-transform: uppercase;
+        }
+
+
+        .info-item span {
+
+            color: #c8d0da;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           SQUAD GRID
+        ===================================================== */
+
+        .squad-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* =====================================================
+           SQUAD CARD
+        ===================================================== */
+
+        .squad-card {
+
+            position: relative;
+
+            min-height: 230px;
+
+            padding: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111f30,
+                    #070d15
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.4s ease,
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+
+        .squad-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border-radius: 50%;
+
+            top: -100px;
+
+            right: -100px;
+
+            background:
+                rgba(255,215,100,0.07);
+
+            transition: 0.5s;
+        }
+
+
+        .squad-card:hover {
+
+            transform:
+                translateY(-10px);
+
+            border-color:
+                rgba(255,215,100,0.55);
+
+            box-shadow:
+                0 20px 45px
+                rgba(0,0,0,0.45);
+        }
+
+
+        .squad-card:hover::before {
+
+            transform: scale(2.2);
+        }
+
+
+        .squad-number {
+
+            color: #ffd76a;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .squad-card h3 {
+
+            color: #edf2f8;
+
+            font-size: 23px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .squad-card p {
+
+            color: #8e9aaa;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           WIKI BUTTON
+        ===================================================== */
+
+        .wiki-button {
+
+            display: inline-block;
+
+            padding: 9px 15px;
+
+            border:
+                1px solid
+                rgba(255,215,100,0.4);
+
+            color: #ffd76a;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+
+        .wiki-button:hover {
+
+            background: #ffd76a;
+
+            color: #07101a;
+
+            box-shadow:
+                0 0 20px
+                rgba(255,215,100,0.25);
+        }
+
+
+        /* =====================================================
+           BLACK BULLS SECTION
+        ===================================================== */
+
+        .black-bulls {
+
+            margin-top: 100px;
+
+            padding: 55px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #191642,
+                    #080b16
+                );
+
+            border:
+                1px solid
+                rgba(151,130,255,0.3);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .black-bulls::before {
+
+            content: "🐂";
+
+            position: absolute;
+
+            right: 40px;
+
+            top: 20px;
+
+            font-size: 140px;
+
+            opacity: 0.05;
+
+            animation:
+                bullFloat 4s ease-in-out infinite;
+        }
+
+
+        @keyframes bullFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+
+        .black-bulls h2 {
+
+            color: #b8a9ff;
+
+            font-size: 40px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .black-bulls p {
+
+            max-width: 850px;
+
+            color: #b4bac6;
+
+            line-height: 1.9;
+
+            margin-bottom: 15px;
+        }
+
+
+        .bull-link {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 12px 20px;
+
+            border:
+                1px solid #a999ff;
+
+            color: #b8a9ff;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+
+        .bull-link:hover {
+
+            background: #a999ff;
+
+            color: #090b15;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .navigation {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+            margin-top: 80px;
+        }
+
+
+        .nav-button {
+
+            padding: 14px 25px;
+
+            border:
+                1px solid #ffd76a;
+
+            color: #ffd76a;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-button:hover {
+
+            background: #ffd76a;
+
+            color: #07101a;
+
+            box-shadow:
+                0 0 25px
+                rgba(255,215,100,0.35);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            text-align: center;
+
+            padding: 40px;
+
+            background: #02050a;
+
+            color: #667382;
+
+            border-top:
+                1px solid
+                rgba(255,215,100,0.2);
+        }
+
+
+        footer span {
+
+            color: #ffd76a;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .main-card {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .squad-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            header {
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            nav {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 15px;
+            }
+
+
+            nav a {
+
+                font-size: 12px;
+            }
+
+
+            .magic-circle {
+
+                width: 300px;
+
+                height: 300px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 42px;
+
+                letter-spacing: 3px;
+            }
+
+
+            .main-card {
+
+                padding: 20px;
+            }
+
+
+            .main-image img {
+
+                height: 300px;
+            }
+
+
+            .info-box {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .squad-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .black-bulls {
+
+                padding: 30px 25px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 <body>
-    <h2>Magic Knights</h2>
-    <hr/>
-     <pre>                                                                           <img src="https://i.pinimg.com/736x/e3/c7/f5/e3c7f5efc584b9e192fb2ff675187d95.jpg" alt="Magic Knight" height="300"/>          </pre>
-    <p>The Magic Knights are powerful magical warriors who protect the Clover Kingdom from enemies, monsters, and other threats. They use their magical abilities and grimoires to fight and protect innocent people. The Magic Knights are divided into several squads, and each squad is led by a captain.</p>
 
-    <p>There are nine Magic Knight squads in the Clover Kingdom. Each squad has its own captain, vice-captains, and members. The squads include the <b>Black Bulls, Golden Dawn, Silver Eagles, Crimson Lion Kings, Blue Rose, Green Praying Mantises, Coral Peacocks, Purple Orcas, and Aqua Deer.</b></p>
 
-    <p>The Black Bulls are one of the most unusual Magic Knight squads. They are led by Captain Yami Sukehiro and include members such as Asta, Noelle Silva, Magna Swing, Luck Voltia, Finral Roulacase, and Vanessa Enoteca. Although the members have different personalities and abilities, they work together as a team.</p>
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-    <p>Magic Knights can improve their rank by completing missions and showing their skills. Their main purpose is to protect the Clover Kingdom and its people. Becoming a Magic Knight is also an important step for people who dream of becoming the Wizard King.</p>
-    <hr/>
+    <header>
 
-    <a href="/AnimeFolder/WizardKing.html"> Go to Wizard King</a>
+        <div class="logo">
+            BLACK CLOVER
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+
+            <a href="characters.html">
+                Characters
+            </a>
+
+
+            <a href="MagicKnights.html">
+                Magic Knights
+            </a>
+
+
+            <a href="WizardKing.html">
+                Wizard King
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <section class="hero">
+
+
+        <div class="magic-circle"></div>
+
+
+        <div class="hero-content">
+
+            <div class="hero-icon">
+                ⚔️
+            </div>
+
+
+            <h1>
+                Magic Knights
+            </h1>
+
+
+            <h2>
+                Guardians of the Clover Kingdom
+            </h2>
+
+
+            <p>
+
+                Explore the legendary Magic Knight squads
+                of Black Clover. Discover their captains,
+                abilities, history and role in the Clover Kingdom.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ===================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             MAGIC KNIGHTS INTRO
+        ================================================= -->
+
+        <section class="main-card">
+
+                <img
+                    src="https://i.pinimg.com/736x/e3/c7/f5/e3c7f5efc584b9e192fb2ff675187d95.jpg"
+                    alt="Magic Knights">
+
+                <div class="image-overlay">
+
+                    <span>
+                        CLICK TO OPEN WIKI ↗
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <!-- INFORMATION -->
+
+            <div class="main-info">
+
+                <h2>
+                    Magic Knights
+                </h2>
+
+
+                <p>
+
+                    The Magic Knights are magical warriors
+                    who serve and protect the Clover Kingdom.
+                    They use grimoires and magical abilities
+                    to complete missions and fight dangerous
+                    enemies.
+
+                </p>
+
+
+                <p>
+
+                    The organization consists of nine squads,
+                    each led by a captain. Every squad has
+                    its own personality, fighting style and
+                    powerful members.
+
+                </p>
+
+
+                <div class="info-box">
+
+
+                    <div class="info-item">
+
+                        <strong>
+                            Kingdom
+                        </strong>
+
+                        <span>
+                            Clover Kingdom
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <strong>
+                            Squads
+                        </strong>
+
+                        <span>
+                            9 Squads
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <strong>
+                            Members
+                        </strong>
+
+                        <span>
+                            Magic Knights
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <strong>
+                            Goal
+                        </strong>
+
+                        <span>
+                            Protect the Kingdom
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SQUADS
+        ================================================= -->
+
+        <section>
+
+
+            <div class="section-title">
+
+                <h2>
+                    The Nine Magic Knight Squads
+                </h2>
+
+
+                <p>
+                    Click "Wikipedia" on any squad to explore
+                    detailed information.
+                </p>
+
+            </div>
+
+
+
+            <div class="squad-grid">
+
+
+                <!-- =========================================
+                     GOLDEN DAWN
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 01
+                    </div>
+
+
+                    <h3>
+                        Golden Dawn
+                    </h3>
+
+
+                    <p>
+
+                        One of the most prestigious Magic Knight
+                        squads in the Clover Kingdom.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     BLACK BULLS
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 02
+                    </div>
+
+
+                    <h3>
+                        Black Bulls
+                    </h3>
+
+
+                    <p>
+
+                        A chaotic but incredibly powerful squad
+                        led by Yami Sukehiro.
+
+                    </p>
+
+
+                
+                </div>
+
+
+
+                <!-- =========================================
+                     SILVER EAGLES
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 03
+                    </div>
+
+
+                    <h3>
+                        Silver Eagles
+                    </h3>
+
+
+                    <p>
+
+                        A noble Magic Knight squad associated
+                        with the Silva royal family.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     CRIMSON LION
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 04
+                    </div>
+
+
+                    <h3>
+                        Crimson Lion Kings
+                    </h3>
+
+
+                    <p>
+
+                        A fearless squad famous for powerful
+                        Fire Magic.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     BLUE ROSE
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 05
+                    </div>
+
+
+                    <h3>
+                        Blue Rose
+                    </h3>
+
+
+                    <p>
+
+                        A powerful squad led by Charlotte Roselei,
+                        known for strong Magic Knights.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     GREEN PRAYING MANTISES
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 06
+                    </div>
+
+
+                    <h3>
+                        Green Praying Mantises
+                    </h3>
+
+
+                    <p>
+
+                        A squad known for skilled and
+                        unpredictable warriors.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     CORAL PEACOCKS
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 07
+                    </div>
+
+
+                    <h3>
+                        Coral Peacocks
+                    </h3>
+
+
+                    <p>
+
+                        A unique squad led by Dorothy Unsworth.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     PURPLE ORCAS
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 08
+                    </div>
+
+
+                    <h3>
+                        Purple Orcas
+                    </h3>
+
+
+                    <p>
+
+                        One of the nine Magic Knight squads
+                        protecting the Clover Kingdom.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     AQUA DEER
+                ========================================== -->
+
+                <div class="squad-card">
+
+                    <div class="squad-number">
+                        SQUAD 09
+                    </div>
+
+
+                    <h3>
+                        Aqua Deer
+                    </h3>
+
+
+                    <p>
+
+                        A squad known for talented Magic Knights
+                        and creative magical abilities.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             BLACK BULLS
+        ================================================= -->
+
+        <section class="black-bulls">
+
+
+            <h2>
+                🐂 Black Bulls
+            </h2>
+
+
+            <p>
+
+                The Black Bulls are one of the most memorable
+                squads in Black Clover. Although they are
+                considered troublesome, their members possess
+                incredible magical abilities and repeatedly
+                prove themselves in dangerous battles.
+
+            </p>
+
+
+            <p>
+
+                Their captain is
+                <strong>
+                    Yami Sukehiro
+                </strong>,
+                a powerful Dark Magic user.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================= -->
+
+        <div class="navigation">
+
+
+            <a
+                href="index.html"
+                class="nav-button">
+
+                🏠 Home
+
+            </a>
+
+
+            <a
+                href="characters.html"
+                class="nav-button">
+
+                👤 Characters
+
+            </a>
+
+
+            <a
+                href="WizardKing.html"
+                class="nav-button">
+
+                👑 Wizard King
+
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <p>
+            Black Clover • Magic Knights
+        </p>
+
+        <br>
+
+        <p>
+            Explore the world of
+            <span>
+                Black Clover
+            </span>
+        </p>
+
+        <br>
+
+        <p>
+            Anime Fan Page ⚔️
+        </p>
+
+    </footer>
+
+
 </body>
+
 </html>
