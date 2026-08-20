@@ -1,24 +1,1010 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Characters Info</title>
+
+    <title>Black Clover | Characters</title>
+
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080812;
+            color: white;
+            line-height: 1.6;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 20px 7%;
+
+            background: rgba(8, 8, 18, 0.92);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+
+        .logo {
+
+            color: #c4b5fd;
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+        }
+
+
+        nav {
+
+            display: flex;
+
+            gap: 28px;
+        }
+
+
+        nav a {
+
+            color: white;
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+
+        nav a:hover {
+
+            color: #a78bfa;
+        }
+
+
+        /* =========================================
+           HERO SECTION
+        ========================================= */
+
+        .hero {
+
+            min-height: 60vh;
+
+            padding: 150px 8% 80px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    rgba(124, 58, 237, 0.22),
+                    transparent 45%
+                ),
+
+                #080812;
+        }
+
+
+        .hero-content {
+
+            max-width: 850px;
+        }
+
+
+        .small-title {
+
+            color: #a78bfa;
+
+            font-size: 14px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+
+        .hero h1 {
+
+            font-size: clamp(55px, 8vw, 100px);
+
+            line-height: 1;
+
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+
+        .hero h2 {
+
+            color: #c4b5fd;
+
+            font-size: 30px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .hero p {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #c7c7d1;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+           CHARACTERS SECTION
+        ========================================= */
+
+        .characters-section {
+
+            padding: 90px 7%;
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            color: #c4b5fd;
+
+            font-size: 42px;
+
+            margin-bottom: 50px;
+
+            text-shadow:
+                0 0 15px rgba(139, 92, 246, 0.3);
+        }
+
+
+        /* =========================================
+           CHARACTER GRID
+        ========================================= */
+
+        .characters-grid {
+
+            max-width: 1300px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 30px;
+        }
+
+
+        /* =========================================
+           CHARACTER CARD
+        ========================================= */
+
+        .character-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #18182b,
+                    #10101c
+                );
+
+            border: 1px solid #292944;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            transition: 0.3s ease;
+        }
+
+
+        .character-card:hover {
+
+            transform: translateY(-10px);
+
+            border-color: #8b5cf6;
+
+            box-shadow:
+                0 15px 40px
+                rgba(124, 58, 237, 0.22);
+        }
+
+
+        /* =========================================
+           CHARACTER IMAGE
+        ========================================= */
+
+        .character-image {
+
+            width: 100%;
+
+            height: 450px;
+
+            background: #11111e;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+
+        .character-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            object-position: center;
+
+            display: block;
+
+            transition: transform 0.5s ease;
+        }
+
+
+        .character-card:hover
+        .character-image img {
+
+            transform: scale(1.03);
+        }
+
+
+        /* =========================================
+           CHARACTER DETAILS
+        ========================================= */
+
+        .character-details {
+
+            padding: 25px;
+        }
+
+
+        .character-details h3 {
+
+            color: #c4b5fd;
+
+            font-size: 25px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .role {
+
+            color: #a78bfa;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 12px;
+        }
+
+
+        .character-details p {
+
+            color: #bdbdc8;
+
+            font-size: 15px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .magic {
+
+            display: inline-block;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(124, 58, 237, 0.15);
+
+            border:
+                1px solid rgba(167, 139, 250, 0.3);
+
+            color: #c4b5fd;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           NAVIGATION SECTION
+        ========================================= */
+
+        .navigation-section {
+
+            padding: 90px 7%;
+
+            text-align: center;
+
+            background: #0d0d18;
+        }
+
+
+        .navigation-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+
+        .nav-btn {
+
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            background: #7c3aed;
+
+            color: white;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-btn:hover {
+
+            background: #a78bfa;
+
+            color: #080812;
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+
+            padding: 35px 8%;
+
+            text-align: center;
+
+            background: #050509;
+
+            border-top: 1px solid #292944;
+
+            color: #888895;
+        }
+
+
+        footer span {
+
+            color: #a78bfa;
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .characters-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 650px) {
+
+            header {
+
+                padding: 18px 5%;
+            }
+
+
+            nav {
+
+                display: none;
+            }
+
+
+            .hero {
+
+                padding: 130px 5% 70px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 52px;
+            }
+
+
+            .hero h2 {
+
+                font-size: 23px;
+            }
+
+
+            .hero p {
+
+                font-size: 16px;
+            }
+
+
+            .characters-section {
+
+                padding: 70px 5%;
+            }
+
+
+            .characters-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .character-image {
+
+                height: 450px;
+            }
+
+
+            .section-title {
+
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 <body>
-    <h2>Characters Info</h2>
-    <hr/>
-    <img src="https://i.pinimg.com/736x/ee/ff/a5/eeffa52f246d5c49622e8ceca87aaab7.jpg" alt="Asta" height="300"/>
-    <br/>
-    <b> Asta - The Anti-Magic warrior </b>
-    <br/>
-    <hr/>
-    <img src="https://i.pinimg.com/736x/75/d7/f4/75d7f4887726bbea35f36aaea741d3ae.jpg" alt="Yuno" height="300"/>
-    <br/>
-    <b> Yuno - The Wind Magic User </b>
-    <hr/>
-    <a href="/AnimeFolder/MagicKnights.html"> Go to Magic Knights</a>
-    <br/>
-    <a href="/AnimeFolder/WizardKing.html"> Go to Wizard King</a>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <header>
+
+        <div class="logo">
+            BLACK CLOVER
+        </div>
+
+
+        <nav>
+
+            <!-- Home goes to first page -->
+
+            <a href="index.html">
+                Home
+            </a>
+
+
+            <!-- Current page -->
+
+            <a href="characters.html">
+                Characters
+            </a>
+
+
+            <!-- Magic Knights page -->
+
+            <a href="MagicKnights.html">
+                Magic Knights
+            </a>
+
+
+            <!-- Wizard King page -->
+
+            <a href="WizardKing.html">
+                Wizard King
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================================
+         HERO SECTION
+    ========================================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                Black Clover Universe
+            </div>
+
+
+            <h1>
+                CHARACTERS
+            </h1>
+
+
+            <h2>
+                Heroes • Rivals • Magic Knights
+            </h2>
+
+
+            <p>
+                Meet some of the most powerful and
+                memorable characters from Black Clover.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         CHARACTERS
+    ========================================= -->
+
+    <section class="characters-section">
+
+        <h2 class="section-title">
+            Main Characters
+        </h2>
+
+
+        <div class="characters-grid">
+
+
+            <!-- =====================================
+                 ASTA
+            ====================================== -->
+
+            <div class="character-card">
+
+                <div class="character-image">
+
+                    <img
+                        src="https://i.pinimg.com/736x/ee/ff/a5/eeffa52f246d5c49622e8ceca87aaab7.jpg"
+                        alt="Asta"
+                    >
+
+                </div>
+
+
+                <div class="character-details">
+
+                    <h3>
+                        Asta
+                    </h3>
+
+
+                    <div class="role">
+                        Main Protagonist
+                    </div>
+
+
+                    <p>
+                        Asta is a boy born without magic.
+                        He dreams of becoming the Wizard King
+                        and fights using powerful Anti-Magic.
+                    </p>
+
+
+                    <span class="magic">
+                        Anti-Magic
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 YUNO
+            ====================================== -->
+
+            <div class="character-card">
+
+                <div class="character-image">
+
+                    <img
+                        src="https://i.pinimg.com/736x/40/39/4d/40394dd9beb7e95c1fc9c87a2ae790b3.jpg"
+                        alt="Yuno"
+                    >
+
+                </div>
+
+
+                <div class="character-details">
+
+                    <h3>
+                        Yuno
+                    </h3>
+
+
+                    <div class="role">
+                        Asta's Rival
+                    </div>
+
+
+                    <p>
+                        Yuno is Asta's childhood friend and
+                        rival. He possesses a four-leaf
+                        grimoire and uses powerful Wind Magic.
+                    </p>
+
+
+                    <span class="magic">
+                        Wind Magic
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 YAMI SUKEHIRO
+            ====================================== -->
+
+            <div class="character-card">
+
+                <div class="character-image">
+
+                    <img
+                        src="https://i.pinimg.com/736x/8d/ef/64/8def6440f99f306f013ea664a3c6561f.jpg"
+                        alt="Yami Sukehiro"
+                    >
+
+                </div>
+
+
+                <div class="character-details">
+
+                    <h3>
+                        Yami Sukehiro
+                    </h3>
+
+
+                    <div class="role">
+                        Captain — Black Bulls
+                    </div>
+
+
+                    <p>
+                        Yami is the captain of the Black Bulls.
+                        He uses Dark Magic and pushes his
+                        squad members beyond their limits.
+                    </p>
+
+
+                    <span class="magic">
+                        Dark Magic
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 NOELLE SILVA
+            ====================================== -->
+
+            <div class="character-card">
+
+                <div class="character-image">
+
+                    <img
+                        src="https://i.pinimg.com/736x/b2/55/ec/b255ec33aa23c774ef35202acbd0ea8d.jpg"
+                        alt="Noelle Silva"
+                    >
+
+                </div>
+
+
+                <div class="character-details">
+
+                    <h3>
+                        Noelle Silva
+                    </h3>
+
+
+                    <div class="role">
+                        Black Bulls
+                    </div>
+
+
+                    <p>
+                        Noelle is a royal member of House Silva.
+                        She gradually learns to control her
+                        powerful Water Magic.
+                    </p>
+
+
+                    <span class="magic">
+                        Water Magic
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 WILLIAM VANGEANCE
+            ====================================== -->
+
+            <div class="character-card">
+
+                <div class="character-image">
+
+                    <img
+                        src="https://i.pinimg.com/736x/e4/d0/5e/e4d05ecb5f63aa69b3eac800e5958e96.jpg"
+                        alt="William Vangeance"
+                    >
+
+                </div>
+
+
+                <div class="character-details">
+
+                    <h3>
+                        William Vangeance
+                    </h3>
+
+
+                    <div class="role">
+                        Captain — Golden Dawn
+                    </div>
+
+
+                    <p>
+                        William is the captain of the Golden
+                        Dawn and a highly respected Magic Knight.
+                        He uses powerful World Tree Magic.
+                    </p>
+
+
+                    <span class="magic">
+                        World Tree Magic
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 MEREOLEONA VERMILLION
+            ====================================== -->
+
+            <div class="character-card">
+
+                <div class="character-image">
+
+                    <img
+                        src="https://i.pinimg.com/1200x/f5/c6/bd/f5c6bd9f4963a0f558b3608455a1529b.jpg"
+                        alt="Mereoleona Vermillion"
+                    >
+
+                </div>
+
+
+                <div class="character-details">
+
+                    <h3>
+                        Mereoleona Vermillion
+                    </h3>
+
+
+                    <div class="role">
+                        Crimson Lion
+                    </div>
+
+
+                    <p>
+                        Mereoleona is an incredibly powerful
+                        warrior and a master of Fire Magic.
+                        She is known for her fearless fighting style.
+                    </p>
+
+
+                    <span class="magic">
+                        Fire Magic
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         NAVIGATION SECTION
+    ========================================= -->
+
+    <section class="navigation-section">
+
+        <h2 class="section-title">
+            Explore More
+        </h2>
+
+
+        <div class="navigation-buttons">
+
+
+            <!-- =====================================
+                 HOME BUTTON
+                 Opens index.html
+            ====================================== -->
+
+            <a
+                href="index.html"
+                class="nav-btn">
+
+                🏠 Home
+
+            </a>
+
+
+            <!-- =====================================
+                 MAGIC KNIGHTS BUTTON
+            ====================================== -->
+
+            <a
+                href="MagicKnights.html"
+                class="nav-btn">
+
+                ⚔️ Magic Knights
+
+            </a>
+
+
+            <!-- =====================================
+                 WIZARD KING BUTTON
+            ====================================== -->
+
+            <a
+                href="WizardKing.html"
+                class="nav-btn">
+
+                👑 Wizard King
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+
+        <p>
+            Black Clover Anime Fan Page
+        </p>
+
+        <br>
+
+
+        <p>
+
+            <span>
+                Asta • Yuno • Yami • Noelle
+            </span>
+
+        </p>
+
+        <br>
+
+
+        <p>
+            Made for Anime Fans ⚡
+        </p>
+
+    </footer>
+
+
 </body>
+
 </html>
